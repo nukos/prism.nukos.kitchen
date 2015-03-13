@@ -1,0 +1,96 @@
+// Prism 0.1.0
+// http://prism.nukos.kitchen/
+// Copyright 2015 nuko's kitchen
+// MIT License
+
+$PRISM_PALETTES: (
+  'base': (
+    'base': (
+      'normal': (
+        color:      $COLOR-TEXT_BASE,
+        background: $COLOR-BG_BASE
+      )
+    )
+  ),
+  'hero': (
+    'base': (
+      'normal': (
+        color:      $COLOR-TEXT_INVERSE,
+        background: $COLOR-PRIMARY
+      )
+    )
+  ),
+  'syntax': (
+    'base': (
+      'normal': (
+        background: $COLOR-PRIMARY
+      )
+    )
+  ),
+  'card': ( 
+    'base': (
+      'normal': (
+        border:     transparent,
+        color:      $COLOR-TEXT_BASE,
+        background: $COLOR-BG_BASE,
+        box-shadow: rgba( 0, 0, 0, .05 )
+      ),
+      'hover': (
+        border:     $COLOR-THEME_DEEPBLUE,
+        color:      brightness( $COLOR-TEXT_BASE, '-05x' ),
+        background: brightness( $COLOR-BG_BASE, '05x' ),
+        box-shadow: rgba( 0, 0, 0, .1 )
+      ),
+      'current': (
+        border:     #333,
+        color:      #fff,
+        background: #444,
+        box-shadow: rgba( 0, 0, 0, .05 )
+      )
+    )
+  )
+) !default;
+
+$PRISM_PALETTE_BRIGHTNESS: (
+  '8x'        : ('darken',  64%),
+  '7x'        : ('darken',  56%),
+  '6x'        : ('darken',  48%),
+  '5x'        : ('darken',  40%),
+  '4x'        : ('darken',  32%),
+  '3x'        : ('darken',  24%),
+  '2x'        : ('darken',  16%),
+  '1x'        : ('darken',   8%),
+  '05x'       : ('darken',   4%),
+  'normal'    : ('none',     0%),
+  '-05x'      : ('lighten',  4%),
+  '-1x'       : ('lighten',  8%),
+  '-2x'       : ('lighten', 16%),
+  '-3x'       : ('lighten', 24%),
+  '-4x'       : ('lighten', 32%),
+  '-5x'       : ('lighten', 40%),
+  '-6x'       : ('lighten', 48%),
+  '-7x'       : ('lighten', 56%),
+  '-8x'       : ('lighten', 64%)
+) !default;
+
+$PRISM_PALETTE_SATURATION: (
+  '8x'        : ('saturate',   64%),
+  '7x'        : ('saturate',   56%),
+  '6x'        : ('saturate',   48%),
+  '5x'        : ('saturate',   40%),
+  '4x'        : ('saturate',   32%),
+  '3x'        : ('saturate',   24%),
+  '2x'        : ('saturate',   16%),
+  '1x'        : ('saturate',    8%),
+  '05x'       : ('saturate',    4%),
+  'normal'    : ('none',        0%),
+  '-05x'      : ('desaturate',  4%),
+  '-1x'       : ('desaturate',  8%),
+  '-2x'       : ('desaturate', 16%),
+  '-3x'       : ('desaturate', 24%),
+  '-4x'       : ('desaturate', 32%),
+  '-5x'       : ('desaturate', 40%),
+  '-6x'       : ('desaturate', 48%),
+  '-7x'       : ('desaturate', 56%),
+  '-8x'       : ('desaturate', 64%)
+) !default;

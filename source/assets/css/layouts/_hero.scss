@@ -1,0 +1,74 @@
+.l-hero {
+  $PALETTE: prism-define( 'hero' );
+
+  $font-color:       prism( 'color', $PALETTE );
+  $background-color: prism( 'background', $PALETTE );
+
+  margin-bottom: -10rem;
+  padding: 5rem 0;
+
+  color: $font-color;
+  background: $background-color;
+
+  .hero-inner {
+    @include outer-container;
+  }
+
+  .hero-title {
+    margin-bottom: 0.5rem;
+
+    text-align: center;
+    font-size: $base-font-size * 2.5;
+    font-weight: 200;
+
+    .t-p { color: $COLOR-THEME_RED }
+    .t-r { color: $COLOR-THEME_ORANGE }
+    .t-i { color: $COLOR-THEME_YELLOW }
+    .t-s { color: $COLOR-THEME_LIME }
+    .t-m { color: $COLOR-THEME_GREEN }
+
+  }
+
+  .hero-subtitle {
+    margin-bottom: 0;
+
+    text-align: center;
+    font-size: $base-font-size * 1;
+  }
+
+  .hero-code {
+
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+
+    min-width: 50%;
+    max-width: 60%;
+
+    @include media($handheld) {
+      max-width: 90%;
+    }
+    
+
+    .highlight {
+      $PALETTE: prism-define( 'syntax' );
+
+      $background-color: prism( 'background', $PALETTE );
+
+      overflow: auto;
+      padding: 2rem;
+      max-height: 20rem;
+
+      border-radius: $base-border-radius;
+      border: 1px solid lighten($background-color, 4%);
+
+      background: darken($background-color, 4%);
+      box-shadow: 0 .05em .5em rgba( 0, 0, 0, .25 );
+
+      pre {
+        font-family: $monospace;
+        font-size: $base-font-size * .9;
+      }
+    }
+  }
+}

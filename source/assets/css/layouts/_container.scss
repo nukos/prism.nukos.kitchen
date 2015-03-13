@@ -1,0 +1,12 @@
+.l-container {
+  $PALETTE: prism-define( 'base' );
+
+  $font-color:       prism( 'color', $PALETTE );
+  $background-color: prism( 'background', $PALETTE );
+
+  padding-top: 10rem;
+  padding-bottom: 2rem;
+  min-height: 480px;
+
+  background: $background-color;
+}

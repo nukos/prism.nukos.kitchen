@@ -1,0 +1,13 @@
+<header id="PageHeader" class="l-header" data-section="<%= current_page.data.section %>">
+  <div class="header-inner">
+    <% if current_page.data.section == 'home' %>
+    <h1 id="SiteID" class="header-site_id">
+      <span class="header-site_name"><%= site_name %></span>
+    </h1>
+    <% else %>
+    <div id="SiteID" class="header-site_id">
+      <a class="header-site_name" href="/"><%= site_name %></a>
+    </div>
+    <% end %>
+  </div>
+</header>

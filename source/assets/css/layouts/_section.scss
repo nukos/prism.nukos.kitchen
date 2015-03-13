@@ -1,0 +1,39 @@
+.l-section {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  .section-header {
+    @include outer-container;
+
+    .header-title {
+
+      font-size: $base-font-size * 2;
+      font-weight: 200;
+      text-align: center;
+    }
+
+    .header-nav {
+      margin-bottom: 1rem;
+      
+      .nav-list {
+
+        text-align: center;
+
+        .list-item {
+          display: inline-block;
+
+          a {
+            
+          }
+        }
+      }
+    }
+  }
+
+  .section-container {
+    @include outer-container;
+  }
+}

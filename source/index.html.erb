@@ -1,0 +1,74 @@
+---
+title: 2015-03-27.29
+section: home
+---
+
+
+<div class="l-hero">
+  <div class="hero-inner">
+    <h2 class="hero-title">
+      <span class="title-logo t-p">P</span><span class="title-logo t-r">R</span><span class="title-logo t-i">I</span><span class="title-logo t-s">S</span><span class="title-logo t-m">M</span> <span class="title-logo t-css">SCSS</span>
+    </h2>
+    <p class="hero-subtitle"><%= site_subtitle %></p>
+    <div class="hero-code">
+    <% code("scss") do %>
+.c-card {
+  $PALETTE: prism-define( 'card' );
+
+  $text-color:       prism( 'color', $PALETTE );
+  $background-color: prism( 'background', $PALETTE );
+
+  color      : $text-color;
+  background : $background-color;
+
+  &:hover {
+    $PALETTE_HOVER: prism-option( $PALETTE, 'state', 'hover' );
+
+    $text-color:       prism( 'color', $PALETTE_HOVER );
+    $background-color: prism( 'background', $PALETTE_HOVER );
+
+    color      : $text-color;
+    background : $background-color;
+  }
+}
+<% end %>
+    </div>
+  </div>
+</div>
+
+<div class="l-container">
+  <div class="l-section">
+    <header class="section-header">
+      <h2 class="header-title">Management Color Code</h2>
+      <nav class="header-nav">
+        <ul class="nav-list">
+          <li><%= link_to 'gist', 'https://gist.github.com/nukos/430f02af2233c0610b2f' %></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="section-container">
+      <div class="c-syntax">
+        <% code("scss") do %>
+$PRISM_PALETTES: (
+  'card': ( 
+    'base': (
+      'normal': (
+        color:      $COLOR-TEXT_BASE,
+        background: $COLOR-BG_BASE,
+      ),
+      'hover': (
+        color:      brightness( $COLOR-TEXT_BASE, '-05x' ),
+        background: brightness( $COLOR-BG_BASE, '05x' ),
+      ),
+      'current': (
+        color:      #fff,
+        background: #444,
+      )
+    )
+  )
+);
+<% end %>
+      </div>
+    </div>
+  </div>
+</div>

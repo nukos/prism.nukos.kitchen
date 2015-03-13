@@ -1,0 +1,7 @@
+<% if current_page.data.section == 'home' then %>
+  <title><%= site_name %> | <%= site_description %></title>
+<% elsif content_for?(:title) %>
+  <title><%= yield_content(:title) %> | <%= site_name %> - <%= site_description %></title>
+<% else %>
+  <title><%= current_page.data.title || "未設定" %> | <%= site_name %></title>
+<% end %>

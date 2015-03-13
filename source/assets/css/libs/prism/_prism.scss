@@ -1,0 +1,235 @@
+//  Prism 0.1.0
+//  http://prism.nukos.kitchen/
+//  Copyright 2015 Ryuichi Nonaka
+//  MIT License
+
+@import 'colors';
+@import 'palettes';
+
+//  Define Prism palette
+//  
+//  @param {String} $name:   palette name.
+//  @param {Maps} $palettes: palette maps (Default: $PRISM_PALETTES).
+//  @param {String} $state:  <Option> State Name (Default: normal).
+//  @param {String} $theme:  <Option> Theme Name (Default: base). 
+//
+//  @example scss - Usage
+//    .element {
+//      $PALETTE: prism-define( 'name', $palettes, 'normal', 'base' );
+//      ...
+//    }
+//
+
+@function prism-define( $name, $palettes: null, $state: 'normal', $theme: 'base' ) {
+  $output: ();
+
+  @if type-of($palettes) == maps {
+    $output: (
+      'name':     $name,
+      'palettes': $palettes,
+      'state':    $state,
+      'theme':    $theme
+    );
+  } @else {
+    $output: (
+      'name':     $name,
+      'state':    $state,
+      'theme':    $theme
+    );
+  }
+
+  @return $output;
+}
+
+
+
+//  Add option in define palette
+//
+//  @param {Maps} $map:     palettes.
+//  @param {String} $key:   option key.
+//  @param {String} $value: option value
+//
+//  @example scss - Usage
+//    .element {
+//      $PALETTE: prism-define( 'name', $palettes, 'normal', 'base' );
+//      ...
+//
+//      &:hover {
+//        $PALETTE_HOVER: prism-option( $PALETTE, 'state', 'hover' );
+//        ...
+//      }
+//    }
+//
+
+@function prism-option($map, $key, $value) {
+
+  @if type-of($map) == maps {
+    @warn "Argument 1 is not Maps";
+  }
+
+  $new_map: ($key: $value);
+
+  @return map-merge($map, $new_map);
+}
+
+
+
+//  Function to return the color code
+// 
+//  @param {String} $property_name: The name of the property.
+//  @param {Maps} $args: Argments.
+//    - name     : Component name.
+//    - palettes : Palettes Array (Default: $PRISM_PALETTES).
+//    - state    : <Option> State Name (Default: normal).
+//    - theme    : <Option> Theme Name (Default: base). 
+// 
+//  @example scss - Usage
+//    .element {
+//      $PALETTE: prism-define( 'name', $palettes, 'normal', 'base' );
+//
+//      background: prism( 'background', $PALETTE );
+//    }
+//
+
+@function prism( $property_name, $args ){
+  $error_color : $COLOR-ERROR_BG;
+  $output      : '';
+  $palette     : '';
+  $property    : '';
+  $tone        : '';
+  $state       : '';
+
+  $default     : (
+    'palettes': $PRISM_PALETTES,
+    'name'    : '',
+    'state'   : 'normal',
+    'theme'   : 'base'  
+  );
+  $args: map-merge( $default, $args );
+
+  // Set Valiables
+  $palettes     : map-get( $args, 'palettes' );
+  $palette_name : map-get( $args, 'name' );
+  $theme_name   : map-get( $args, 'theme' );
+  $state_name   : map-get( $args, 'state' );
+
+  // Get palette
+  @if map-has-key( $palettes, $palette_name ) {
+    $palette: map-get( $palettes, $palette_name );
+  } @else {
+    @warn "Name in the palette : #{$palette_name} is not defined.";
+  }
+
+  // Get tone
+  @if map-has-key( $palette, $theme_name ) {
+    $tone: map-get( $palette, $theme_name );
+  } @else {
+    @warn "Tone in the palette : #{$theme_name} is not defined.";
+  }
+
+  // Get property
+  @if map-has-key( $tone, $state_name ) {
+    $state: map-get( $tone, $state_name );
+  } @else {
+    @warn "State in the palette: #{$state_name} is not defined.";
+  }
+
+  // Get property
+  @if map-has-key( $state, $property_name ) {
+    $property: map-get( $state, $property_name );
+  } @else {
+    @warn "Property in the palette: #{$property_name} is not defined.";
+  }
+
+  @if $property != '' { $output: $property; } @else { $output: $error_color; }
+  @return $output;
+}
+
+
+
+//  It is Function of that dark or bright colors.
+//
+//  @param {Color} $src_color:  Alters the color code.
+//  @param {String} $tone_name: The name of the tone.
+//
+//  @example scss - Usage
+//    .element {
+//      $PALETTE: prism-define( 'name', $palettes, 'normal', 'base' );
+//
+//      $background-color: prism( 'background', $PALETTE );
+//      background: tone( $background-color, '1x' );
+//    }
+//
+
+@function brightness( $src_color, $tone_name: 'normal' ) {
+  $output: $COLOR-ERROR_BG;
+  $tones:      $PRISM_PALETTE_BRIGHTNESS;
+
+  @if map-has-key( $tones, $tone_name ) {
+
+    $tone:   map-get( $tones, $tone_name );
+    $name:   nth( $tone, 1 );
+    $amount: nth( $tone, 2 );
+
+    @if $name == lighten {
+      // return lighten
+      $output: lighten( $src_color, $amount );
+    } @else if $name == darken {
+      // darken
+      $output: darken( $src_color, $amount );
+    } @else {
+      // normal
+      $output: $src_color;
+    }
+    
+  } @else {
+    @warn "Tone: #{$tone_name} is not defined.";
+  }
+
+  @return $output;
+}
+
+
+
+
+//  It is Function of that saturate or desaturate colors.
+//
+//  @param {Color} $src_color:  Alters the color code.
+//  @param {String} $tone_name: The name of the tone.
+//
+//  @example scss - Usage
+//    .element {
+//      $PALETTE: prism-define( 'name', $palettes, 'normal', 'base' );
+//
+//      $background-color: prism( 'background', $PALETTE );
+//      background: saturation( $background-color, '1x' );
+//    }
+//
+
+@function saturation( $src_color, $tone_name: 'normal' ) {
+  $output: $COLOR-ERROR_BG;
+  $tones: $PRISM_PALETTE_SATURATION;
+
+  @if map-has-key( $tones, $tone_name ) {
+
+    $tone:   map-get( $tones, $tone_name );
+    $name:   nth( $tone, 1 );
+    $amount: nth( $tone, 2 );
+
+    @if $name == saturate {
+      // saturate
+      $output: saturate( $src_color, $amount );
+    } @else if $name == darken {
+      // desaturate
+      $output: desaturate( $src_color, $amount );
+    } @else {
+      // normal
+      $output: $src_color;
+    }
+    
+  } @else {
+    @warn "Tone: #{$tone_name} is not defined.";
+  }
+
+  @return $output;
+}

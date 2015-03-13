@@ -1,0 +1,18 @@
+.l-header {
+  $PALETTE: prism-define( 'hero' );
+
+  $font-color:       prism( 'color', $PALETTE );
+  $background-color: prism( 'background', $PALETTE );
+
+  color: $font-color;
+  background: $background-color;
+
+  .header-inner {
+     @include outer-container;
+  }
+
+  .header-site_id {
+    margin-bottom: 0;
+    padding: 1em;
+  }
+}

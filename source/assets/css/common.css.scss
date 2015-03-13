@@ -1,0 +1,88 @@
+// import gems
+@import 'bourbon';
+@import 'neat-helpers';
+@import 'neat';
+
+@import 'libs/prism/prism';
+
+// import elements
+@import 'elements/base';
+
+// import configs
+@import 'config/breakpoint';
+@import 'config/variables';
+
+// common
+@import 'commons/base';
+
+// layouts
+@import 'layouts/header';
+@import 'layouts/container';
+@import 'layouts/section';
+@import 'layouts/hero';
+
+
+// components
+@import 'components/syntax';
+
+// plugins
+@import 'plugins/syntax';
+
+
+html {
+  background: #eee;
+}
+
+
+.c-card {
+  $PALETTE: prism-define( 'card' );
+
+  $border-color:     prism( 'border', $PALETTE );
+  $text-color:       prism( 'color', $PALETTE );
+  $background-color: prism( 'background', $PALETTE );
+  $box-shadow-color: prism( 'box-shadow', $PALETTE );
+
+  margin    : 2rem auto;
+  padding   : 3rem;
+  min-width :  30%;
+  max-width :  60%;
+
+  border-radius : 2px;
+  border        : 1px solid $border-color;
+
+  text-align : center;
+  color      : $text-color;
+
+  background : $background-color;
+  box-shadow : 0 .05rem .2rem $box-shadow-color;
+
+
+  &:hover {
+    $PALETTE_HOVER: prism-option( $PALETTE, 'state', 'hover' );
+
+    $border-color:     prism( 'border', $PALETTE_HOVER );
+    $text-color:       prism( 'color', $PALETTE_HOVER );
+    $background-color: prism( 'background', $PALETTE_HOVER );
+    $box-shadow-color: prism( 'box-shadow', $PALETTE_HOVER );
+
+    border     : 1px solid $border-color;
+    color      : $text-color;
+    background : $background-color;
+    box-shadow : 0 .05rem .75rem $box-shadow-color;
+  }
+
+
+  &.s-current {
+    $PALETTE_CURRENT: prism-option( $PALETTE, 'state', 'current');
+
+    $border-color:     prism( 'border', $PALETTE_CURRENT );
+    $text-color:       prism( 'color', $PALETTE_CURRENT );
+    $background-color: prism( 'background', $PALETTE_CURRENT );
+    $box-shadow-color: prism( 'box-shadow', $PALETTE_CURRENT );
+
+    border     : 1px solid $border-color;
+    color      : $text-color;
+    background : $background-color;
+    box-shadow : 0 .05rem .5rem $box-shadow-color;
+  }
+}
