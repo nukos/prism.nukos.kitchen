@@ -1,3 +1,5 @@
+require 'aws-sdk-v1'
+
 ########################
 #
 # Site setting
@@ -132,4 +134,36 @@ configure :build do
 
   # Use relative URLs
   # activate :relative_assets
+end
+
+
+
+########################
+#
+# S3sync Setting
+#
+########################
+activate :s3_sync do |config|
+
+  # Profile name
+  profile_name = 's3-prism-nukos-kitchen'
+
+  # Get credential
+  credential = AWS::Core::CredentialProviders::
+                SharedCredentialFileProvider
+                .new(profile_name: profile_name)
+                .get_credentials
+
+  # S3Sync config
+  config.bucket                     = 'prism.nukos.kitchen'
+  config.region                     = 'ap-northeast-1'
+  config.aws_access_key_id          = credential[:access_key_id]
+  config.aws_secret_access_key      = credential[:secret_access_key]
+  config.delete                     = true
+  config.after_build                = false
+  config.prefer_gzip                = true
+  config.path_style                 = true
+  config.reduced_redundancy_storage = false
+  config.acl                        = 'public-read'
+  config.encryption                 = false
 end

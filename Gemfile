@@ -11,7 +11,7 @@ gem 'middleman-syntax'
 # gem 'middleman-blog'
 gem 'middleman-livereload'
 # gem 'middleman-minify-html'
-# gem 'middleman-s3_sync'
+gem 'middleman-s3_sync'
 # gem 'middleman-imageoptim'
 
 # For feed.xml.builder
