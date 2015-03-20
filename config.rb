@@ -9,8 +9,8 @@ Time.zone = "Tokyo"
 set :encoding, 'utf-8'
 
 set :site_url,              'http://example.com'
-set :site_name,             'Prism α'
-set :site_title,            'Prism α - SCSS Color Code Management'
+set :site_name,             'PRISM α'
+set :site_title,            'PRISM α - SCSS Color Code Management'
 set :site_subtitle,         'SCSS Color Code Management'
 set :site_description,      'Example Site Description.'
 set :site_keywords,         'site keywords, hogehoge, fugafuga'
